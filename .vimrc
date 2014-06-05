@@ -56,7 +56,11 @@ set softtabstop=4
 let NERDSpaceDelims=1"
 
 " ================ Status Line ====================
+<<<<<<< HEAD
 set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\  col:%c%V\ pos:%o\ ascii:%b\ %P
+=======
+set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
+>>>>>>> 988898f013cea8d8c110f2a5a9070cece1f6d9cb
 " set statusline+=%y%f 
 set laststatus=2
 hi StatusLine ctermbg=black ctermfg=green
