@@ -7,6 +7,9 @@ set laststatus=2
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
 
+" SWP Files are so lame
+set noswapfile
+
 " Syntax
 syntax on
 
