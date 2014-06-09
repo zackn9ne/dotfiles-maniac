@@ -238,3 +238,35 @@ alias wdc=myfunction
 # alias to open notes & todo
 alias notes='vi ~/notes.txt'
 alias todo='vi ~/todo.txt'
+
+# alias to run dotfiler
+alias dotfiler='bash ~/dotfiler.command'
+alias classbackup='bash ~/classbackup.command'
+
+chris() {
+  # for future classes:
+  # http://www.epochconverter.com/ --- select the day you started, at 6am. Set that as courseStart
+  # epoch time is seconds since jan 1, 1970. Google that shit.
+  # epoch time WDI-string: Monday April 21, 6am.
+  courseStart=1398074400
+  secondsPerWeek=604800
+  # secondsPerDay=86400
+  # get current epoch time
+  currentTime=$(date +%s)
+  secondsSinceStart=$(($currentTime-$courseStart))
+  weeksFloat=$(($secondsSinceStart/$secondsPerWeek))
+  # gets the number of weeks since the start of the course and rounds down
+  weeksInt=${weeksFloat%.*}
+  # adds the extra week to compensate for starting on week 0
+  weeks=$(($weeksInt+1))
+  # day of the week numerically, sunday = 0
+  numericalDay=$(date +%w)
+  # saturday and sunday cd into the d05 folder
+  if [ $numericalDay -eq 0 ] || [ $numericalDay -eq 6 ]
+  then
+    cd ~/code/wdi/WDI_NYC_Apr14_String/w0$weeks/d05/Christopher_Bajorin
+  else
+    cd ~/code/wdi/WDI_NYC_Apr14_String/w0$weeks/d0$numericalDay/Christopher_Bajorin
+  fi
+}
+
