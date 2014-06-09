@@ -223,33 +223,7 @@ alias vi="/Applications/MacVim.app/Contents/MacOS/Vim"
 PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
 export PATH
 
-function wdi_today() {
-  # for future classes:
-  # http://www.epochconverter.com/ --- select the day you started, at 6am. Set that as courseStart
-  # epoch time is seconds since jan 1, 1970. Google that shit.
-  # epoch time WDI-string: Monday April 21, 6am.
-  courseStart=1398074400
-  secondsPerWeek=604800
-  # get current epoch time
-  currentTime=$(date +%s)
-  secondsSinceStart=$(($currentTime-$courseStart))
-  weeksFloat=$(($secondsSinceStart/$secondsPerWeek))
-  # gets the number of weeks since the start of the course and rounds down
-  weeksInt=${weeksFloat%.*}
-  # adds the extra week to compensate for starting on week 0
-  weeks=$(($weeksInt+1))
-  # day of the week numerically since sunday
-  day=$(date +%d)
-  # adjust for starting on monday
-  adjustedDay=$(($day-1))
-  if [ $adjustedDay -eq -1 ] || [ $adjustedDay -eq 6 ]
-  then
-    cd ~/code/wdi/WDI_NYC_Apr14_String/w0$weeks/d05/Christopher_Bajorin
-  else
-    cd ~/code/wdi/WDI_NYC_Apr14_String/w0$weeks/d0$adjustedDay/Christopher_Bajorin
-  fi
-}
-alias chris=wdi_today
+
 # powerline needs this to run in other apps
 if [ -f ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]; then
     source ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
@@ -259,4 +233,8 @@ fi
 myfunction() {
 	cd ~/code/wdi/WDI_NYC_Apr14_String/w0$1/d0$2/Zack_Levine
 	}
-alias wdi=myfunction
+alias wdc=myfunction
+
+# alias to open notes & todo
+alias notes='vi ~/notes.txt'
+alias todo='vi ~/todo.txt'

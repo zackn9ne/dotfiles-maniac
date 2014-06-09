@@ -1,3 +1,6 @@
+" TMUX Clipboard is important
+set clipboard=unnamed
+
 " Powerline on
 set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim/
 
