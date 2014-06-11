@@ -102,6 +102,16 @@ PS1+="${style_chars}\$ \[${RESET}\]"     # $ (and reset color)
 # -----------------
 # For the prompt
 # -----------------
+
+
+
+
+
+
+
+
+
+
 # Long git to show + ? !
 is_git_repo() {
     $(git rev-parse --is-inside-work-tree &> /dev/null)
@@ -171,7 +181,7 @@ eval "$(rbenv init -)"
 # Students can add a shortcut to quickly access their GA folder
 # example: alias wdi="cd ~/Documents/GA/WDI4"
 # TODO: Set these
-alias wdi="cd ~/code/wdi/"
+alias wdi="cd ~/code/wdi/ && echo 'you are at the root wdi folder...'"
 
  cdhwfunc() {
    # takes three args: the week, the day
@@ -210,12 +220,10 @@ fi
 # ====================================
 # Environmental Variables and API Keys
 # ====================================
-alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
-alias vi="/Applications/MacVim.app/Contents/MacOS/Vim"
+# alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+# alias vi="/Applications/MacVim.app/Contents/MacOS/Vim"
 
 
-# Loads Powerline
-. /usr/local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
 
 
 # Setting PATH for Python 2.7
@@ -224,10 +232,13 @@ PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
 export PATH
 
 
-# powerline needs this to run in other apps
+# powerline needs this to run in other apps (tmux & vim)
 if [ -f ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]; then
     source ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
 fi
+
+# Loads Powerline Even in Regular Bash
+. /usr/local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
 
 # zacks current class script
 myfunction() {
@@ -243,30 +254,61 @@ alias todo='vi ~/todo.txt'
 alias dotfiler='bash ~/dotfiler.command'
 alias classbackup='bash ~/classbackup.command'
 
-chris() {
-  # for future classes:
-  # http://www.epochconverter.com/ --- select the day you started, at 6am. Set that as courseStart
-  # epoch time is seconds since jan 1, 1970. Google that shit.
-  # epoch time WDI-string: Monday April 21, 6am.
-  courseStart=1398074400
-  secondsPerWeek=604800
-  # secondsPerDay=86400
-  # get current epoch time
-  currentTime=$(date +%s)
-  secondsSinceStart=$(($currentTime-$courseStart))
-  weeksFloat=$(($secondsSinceStart/$secondsPerWeek))
-  # gets the number of weeks since the start of the course and rounds down
-  weeksInt=${weeksFloat%.*}
-  # adds the extra week to compensate for starting on week 0
-  weeks=$(($weeksInt+1))
-  # day of the week numerically, sunday = 0
-  numericalDay=$(date +%w)
-  # saturday and sunday cd into the d05 folder
-  if [ $numericalDay -eq 0 ] || [ $numericalDay -eq 6 ]
-  then
-    cd ~/code/wdi/WDI_NYC_Apr14_String/w0$weeks/d05/Christopher_Bajorin
-  else
-    cd ~/code/wdi/WDI_NYC_Apr14_String/w0$weeks/d0$numericalDay/Christopher_Bajorin
-  fi
-}
+# alias tmux
+alias tma="tmux attach-session -t0"
 
+# alias some function
+
+   # else
+     # cd ~/code/wdi/$class_repo/w$1/d0$2/${3:-Instructor}
+   # fi
+
+alias pull='cd ~/code/wdi/WDI_NYC_Apr14_String/ && git pull upstream master && cd -'
+# chris() {
+#   # for future classes:
+#   # http://www.epochconverter.com/ --- select the day you started, at 6am. Set that as courseStart
+#   # epoch time is seconds since jan 1, 1970. Google that shit.
+#   # epoch time WDI-string: Monday April 21, 6am.
+#   courseStart=1398074400
+#   secondsPerWeek=604800
+#   # secondsPerDay=86400
+#   # get current epoch time
+#   currentTime=$(date +%s)
+#   secondsSinceStart=$(($currentTime-$courseStart))
+#   weeksFloat=$(($secondsSinceStart/$secondsPerWeek))
+#   # gets the number of weeks since the start of the course and rounds down
+#   weeksInt=${weeksFloat%.*}
+#   # adds the extra week to compensate for starting on week 0
+#   weeks=$(($weeksInt+1))
+#   # day of the week numerically, sunday = 0
+#   numericalDay=$(date +%w)
+#   # saturday and sunday cd into the d05 folder
+#   if [ $numericalDay -eq 0 ] || [ $numericalDay -eq 6 ]
+#   then
+#     cd ~/code/wdi/WDI_NYC_Apr14_String/w0$weeks/d05/Christopher_Bajorin
+#   else
+#     cd ~/code/wdi/WDI_NYC_Apr14_String/w0$weeks/d0$numericalDay/Christopher_Bajorin
+#   fi
+# }
+
+
+
+##
+# Your previous /Users/zacklevine/.bash_profile file was backed up as /Users/zacklevine/.bash_profile.macports-saved_2014-06-10_at_18:16:25
+##
+
+# MacPorts Installer addition on 2014-06-10_at_18:16:25: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+
+##
+# Your previous /Users/zacklevine/.bash_profile file was backed up as /Users/zacklevine/.bash_profile.macports-saved_2014-06-10_at_18:18:47
+##
+
+# MacPorts Installer addition on 2014-06-10_at_18:18:47: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+alias tmux="tmux -2" #do you like colors or do youlike broken shit
+alias vi="mvim -v" #good luck pasting out of vim without it

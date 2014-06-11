@@ -1,4 +1,7 @@
-" TMUX Clipboard is important
+" Filetype plugin on or else plugins are fucked
+filetype plugin on
+
+" System clipboard you need this for tmux or i can assure you will be fucked
 set clipboard=unnamed
 
 " Powerline on
@@ -7,7 +10,7 @@ set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim/
 " Always show statusline
 set laststatus=2
 
-" Use 256 colours (Use this setting only if your terminal supports 256 colours)
+" Use 256 colours or else powerline will be very mad
 set t_Co=256
 
 " SWP Files are so lame
@@ -16,7 +19,7 @@ set noswapfile
 " Syntax
 syntax on
 
-" Pasting things is good
+" Pasting things is good without tab offsetting
 set paste
 
 " Let's check if file was changed outside of vim
@@ -26,23 +29,23 @@ au CursorHold * checktime
 execute pathogen#infect()
 " vim-expand-region git@github.com:terryma/vim-expand-region.git + _ like emacs
 
-	" Essential 50% 50% Splits
-	autocmd VimResized * wincmd =
+" Essential 50% 50% Splits
+autocmd VimResized * wincmd =
 
-	" Essential Indenting
-	set smartindent 
-	set tabstop=4 
-	set shiftwidth=4 
-	set softtabstop=4
+" Essential Indenting
+set smartindent 
+set tabstop=4 
+set shiftwidth=4 
+set softtabstop=4
 
-	" Line Numbers
-	set number
+" Line Numbers
+set number
 
-	" Line Numbers Pretty
-	highlight LineNr   ctermbg=black ctermfg=blue guibg=black guifg=white
+" Line Numbers Pretty
+highlight LineNr   ctermbg=black ctermfg=blue guibg=black guifg=white
 
-	" Mapleader should be comma
-	let mapleader=","
+" Mapleader should be comma
+let mapleader=","
 
 	" Keep undo history across sessions, by storing in file.
 	" Only works all the time.
@@ -66,3 +69,6 @@ augroup END " }
 " Abbreviations are lazy
 iab <expr> dts strftime("%c")
 iab #d #define
+
+" Gist-vim
+let g:github_api_url = 'https://api.github.com'
