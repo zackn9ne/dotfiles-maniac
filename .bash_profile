@@ -220,8 +220,6 @@ fi
 # ====================================
 # Environmental Variables and API Keys
 # ====================================
-# alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
-# alias vi="/Applications/MacVim.app/Contents/MacOS/Vim"
 
 
 
@@ -233,12 +231,12 @@ export PATH
 
 
 # powerline needs this to run in other apps (tmux & vim)
-if [ -f ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]; then
-    source ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
-fi
+# if [ -f ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh ]; then
+    # source ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+# fi
 
 # Loads Powerline Even in Regular Bash
-. /usr/local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+# . /usr/local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
 
 # zacks current class script
 myfunction() {
@@ -312,3 +310,24 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
 alias tmux="tmux -2" #do you like colors or do youlike broken shit
 alias vi="mvim -v" #good luck pasting out of vim without it
+alias vim="-p 'pause' vim"
+#!/bin/bash
+# init
+function pause(){
+   read -p "$*"
+}
+ 
+# ...
+# call it
+# rest of the script
+
+
+##
+# Your previous /Users/zacklevine/.bash_profile file was backed up as /Users/zacklevine/.bash_profile.macports-saved_2014-06-11_at_19:25:47
+##
+
+# MacPorts Installer addition on 2014-06-11_at_19:25:47: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+zsh
