@@ -17,8 +17,6 @@ Bundle 'scrooloose/syntastic'
 " We could also add repositories with a ".git" extension
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'scrooloose/nerdcommenter.git'
-Bundle 'kien/ctrlp.vim'
-Bundle 'rking/ag.vim'
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " All of your Plugins must be added before the following line
