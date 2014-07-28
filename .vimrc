@@ -1,44 +1,107 @@
-" ----
-" PREREQUISITE
-" SYSTEM CLIPBOARD with this but more importantly install mvim $brew install macvim --override-system-vim
-" run vim with $mvim -v to make sure you are using the mvim for commandline
-" ----
+" Shelling Out Wont Work Right Unless
+set shell=bash\ -l
 
-" Pathogen enable plugin support
-execute pathogen#infect()
+set nocompatible "vundle needs
+filetype off  
 
-" Filetype plugin on or else plugins are fucked
-filetype plugin on
+"   ### VUNDLE ### :BundleInstall things
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" Get to system clipboard
-set clipboard=unnamed 
+" Let Vundle manage Vundle
+Plugin 'gmarik/Vundle.vim'
+
+" My Bundles
+Bundle 'scrooloose/syntastic'
+
+" We could also add repositories with a ".git" extension
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'scrooloose/nerdcommenter.git'
+Bundle 'kien/ctrlp.vim'
+Bundle 'rking/ag.vim'
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install (update) plugins
+" :PluginSearch(!) foo - search (or refresh cache first) for foo
+" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+" back to work -------------------------------------------
+
+" Leader
+let mapleader = ","
+
+set backspace=2 " Backspace deletes like most programs in insert mode
+set nobackup
+set nowritebackup
+set noswapfile " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+set history=50
+set ruler " show the cursor position all the time
+set showcmd " display incomplete commands
+set incsearch " do incremental searching
+set laststatus=2 " Always display the status line
 
 
+" Set 1 tab at 4 spaces
+set tabstop=4 
+set shiftwidth=4 
+set softtabstop=4
 
-
-"=====SEARCHING
-
-" Smart case searching
-set ignorecase
-
-" Highlight result
-" set hlsearch
-
-" Make enter unhighlight it for sanity
-" nnoremap <CR> :nohlsearch<CR>/<BS><CR>
-
-" Incremental futuresitic 
-set incsearch
-
-" Show matching brackets when text indicator is over them
-set showmatch
-
-
-" SWP Files are so lame
+set expandtab
 set noswapfile
+" Smart things are smart
+set si
+set ai
 
-" Syntax
-syntax on
+set paste
+set splitright
+
+" Ctrlp needs to start at the 'c' - the directory of the current file.
+let g:ctrlp_working_path_mode = 'c' 
+
+" Movement between tabs OR buffers
+nnoremap <silent> L :call MyNext()<CR>
+nnoremap <silent> H :call MyPrev()<CR>
+
+" MyNext() and MyPrev(): Movement between tabs OR buffers {{{
+function! MyNext()
+    if exists( '*tabpagenr' ) && tabpagenr('$') != 1
+        " Tab support && tabs open
+        normal gt
+    else
+        " No tab support, or no tabs open
+        execute ":bnext"
+    endif
+endfunction
+function! MyPrev()
+    if exists( '*tabpagenr' ) && tabpagenr('$') != '1'
+        " Tab support && tabs open
+        normal gT
+    else
+        " No tab support, or no tabs open
+        execute ":bprev"
+    endif
+endfunction
+" }}}
+
+
+" Keep undo history across sessions, by storing in file.
+" Only works all the time.
+"
+if has('persistent_undo')
+  silent !mkdir ~/.vim/backups > /dev/null 2>&1
+  set undodir=~/.vim/backups
+  set undofile
+endif
 
 
 " Let's check if file was changed outside of vim
@@ -47,56 +110,8 @@ au CursorHold * checktime
 " Set to autoread when a file is changed from the outside
 set autoread
 
-" vim-expand-region git@github.com:terryma/vim-expand-region.git + _ like emacs
-
-" Essential 50% 50% Splits
-autocmd VimResized * wincmd =
-
-
-" Set 1 tab at 4 spaces
-set tabstop=4 
-set shiftwidth=4 
-set softtabstop=4
-
-" Line Numbers
-set number
-
-" Line Numbers Pretty
-highlight LineNr   ctermbg=black ctermfg=blue guibg=black guifg=white
-
-" Mapleader should be comma
-let mapleader=","
-
-" Keep undo history across sessions, by storing in file.
-" Only works all the time.
-"
-if has('persistent_undo')
-	silent !mkdir ~/.vim/backups > /dev/null 2>&1
-	set undodir=~/.vim/backups
-	set undofile
-endif
-
-" VIM PLUIGN nerdcommenter
-" Always leave a space between the comment character and the comment
-let NERDSpaceDelims=1"
-
-
-" Abbreviations are lazy
-iab <expr> dts strftime("%c")
-iab #d #define
-
-" Gist-vim
-let g:github_api_url = 'https://api.github.com'
-
-" Instantly leave insert mode
+" Turbo leave insert mode
 set timeoutlen=1000 ttimeoutlen=0
-
-" Return to last edit position when opening files (You want this!)
-autocmd BufReadPost *
-			\ if line("'\"") > 0 && line("'\"") <= line("$") |
-			\   exe "normal! g`\"" |
-			\ endif
-
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -104,56 +119,3 @@ autocmd BufReadPost *
 
 " Height of the command bar
 set cmdheight=2
-
-
-"=====UX
-
-" Turn on the WiLd menu, easy command completion with <TAB><CR>
-set wildmenu
-
-" Buffer Madness
-" Mappings to access buffers (don't use "\p" because a
-" delay before pressing "p" would accidentally paste).
-" \l       : list buffers
-" \b \f \g : go back/forward/last-used
-" \1 \2 \3 : go to buffer 1/2/3 etc
-nnoremap <Leader>l :ls<CR>
-nnoremap <Leader>p :bp<CR>
-nnoremap <Leader>n :bn<CR>
-nnoremap <Leader>x :bd<CR>
-nnoremap <Leader>g :e#<CR>
-nnoremap <Leader>1 :1b<CR>
-nnoremap <Leader>2 :2b<CR>
-nnoremap <Leader>3 :3b<CR>
-nnoremap <Leader>4 :4b<CR>
-nnoremap <Leader>5 :5b<CR>
-nnoremap <Leader>6 :6b<CR>
-nnoremap <Leader>7 :7b<CR>
-nnoremap <Leader>8 :8b<CR>
-nnoremap <Leader>9 :9b<CR>
-nnoremap <Leader>0 :10b<CR>
-" It's useful to show the buffer number in the status line.
-set laststatus=2 
-
-" Format the status line
-" Status Line {  
-set laststatus=2                             " always show statusbar  
-set statusline=  
-set statusline+=%-10.3n\                     " buffer number  
-set statusline+=%f\                          " filename   
-set statusline+=%h%m%r%w                     " status flags  
-set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type  
-set statusline+=%=                           " right align remainder  
-set statusline+=0x%-8B                       " character value  
-set statusline+=%-14(%l,%c%V%)               " line, character  
-set statusline+=%<%P                         " file position  
-"}  
-
-
-
-" Essential Indenting
-filetype off
-filetype plugin indent on
-set ai
-set si
-set paste
