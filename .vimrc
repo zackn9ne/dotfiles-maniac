@@ -4,17 +4,20 @@ set shell=bash\ -l
 set nocompatible "vundle needs
 filetype off  
 
-"   ### VUNDLE ### :BundleInstall things
+" ### VUNDLE ### 
+" ### VUNDLE ### 
+" ### VUNDLE ### 
+" 1. git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" 2. :PluginList          - list configured plugins
+" 3. :PluginInstall(!)    - install (update) plugins
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" Let Vundle manage Vundle
+" Default
 Plugin 'gmarik/Vundle.vim'
 
-" My Bundles
-Bundle 'scrooloose/syntastic'
-
-" We could also add repositories with a ".git" extension
+" Mine username/reponame.git
+Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'scrooloose/nerdcommenter.git'
 
@@ -34,6 +37,9 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 " back to work -------------------------------------------
+" ### VUNDLE ### 
+" ### VUNDLE ### 
+" ### VUNDLE ### 
 
 " Leader
 let mapleader = ","
@@ -59,6 +65,7 @@ set noswapfile
 " Smart things are smart
 set si
 set ai
+set smartcase
 
 set paste
 set splitright
