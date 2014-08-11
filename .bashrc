@@ -59,7 +59,7 @@ fi
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h you are in:\[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\] \[$(tput sgr0)\]  \[$(tput setaf 2)\]^--$( ruby ~/code/ruby-weather/weather.rb )--^ \$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -112,8 +112,5 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-# synaptics touchpad needs to be able to drag
-synclient LockedDrags=1
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
