@@ -67,3 +67,8 @@ dotfiles-maniac zackn9ne's dotfiles
 </pre>
 
 zackn9nes dotfiles for vim & tmux nuff sed
+
+instructions: cd to ~/ and git clone
+instructions2: cd into repo and $stow vim to symlink them one level back to your ~/, then stow tmux, then stow whatever.
+
+*fin*
