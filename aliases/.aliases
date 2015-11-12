@@ -1,0 +1,7 @@
+alias r="source ~/.zshrc"
+
+export EDITOR=/usr/local/bin/nvim
+alias c="offlineimap -u CURSES.BLINKENLIGHTS"
+alias p="ping google.com"
+alias ll="ls -lha"
+alias vi="vim"

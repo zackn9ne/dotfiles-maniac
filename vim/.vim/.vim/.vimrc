@@ -5,10 +5,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/syntastic'
-" Plug 'bling/vim-airline'
+Plug 'bling/vim-airline'
 Plug 'miyakogi/conoline.vim'    "ConoLineEnable
 Plug 'scrooloose/nerdcommenter' "Comma-c-space
-Plug 'powerline/powerline'
 
 
 " NERD tree will be loaded on the first invocation of NERDTreeToggle command
@@ -149,6 +148,7 @@ set undofile
 set colorcolumn=+1 "mark the ideal max text width
 endif
 
+set t_Co=256
 set noswapfile
 
 
@@ -172,12 +172,4 @@ let g:syntastic_check_on_wq = 0
 
 " Boot conoline
 let g:conoline_auto_enable = 1
-"let g:airline#extensions#tabline#enabled = 1
-"set guifont=Liberation_Mono_for_Powerline:h10 
-"" Always show statusline
-set t_Co=256
-
-
-" http://blog.codefront.net/2013/10/27/installing-powerline-on-os-x-homebrew/
-source /usr/local/lib/python3.4/site-packages/powerline/bindings/vim/plugin/powerline.vim
-set laststatus=2
+set guifont=Liberation_Mono_for_Powerline:h10 

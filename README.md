@@ -11,6 +11,26 @@ dotfiles-maniac zackn9ne's dotfiles
     ÜÛÛÛÛÛÛÛ   ÞÛÛß     ßÛÛÛ ßÜ                  Ü           þ
     ÛÛÛÛÛÛÛÛÜ  Üß     Üß  ßÛÛ                     ÛÛÜÜ
     ÛÛÛÛÛÛÛÛÛÛÜ       ßÜ  ÜÛÛÜ                   ÞÛÛÛÛÛ
+
+
+    zackn9nes dotfiles for vim & tmux nuff sed
+
+    how this is organised
+    - there are regular directories named after program
+    - inside those are the dotfiles and dotfolders related to program
+    - cd into dotfiles-maniac and stow #{program name}
+    - #{program name}'s dotfiles and or folders get(s) stowed into their proper places: $HOME
+
+    brew install stow
+    - make subdirectories
+    - clear dotfiles from ~/
+    - cd into dotfiles-maniac && stow vim
+
+    learn about stow, its awesome (i could never get my dotfiles ot symlink)
+    - http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html 
+    - https://www.gnu.org/software/stow/
+
+
     ÛÛÛÛÛÛÛÛÛÛÛÛÛÜÜ     ßßßß          ÜÜÜÜÜÜÜ    Ûß ßÛÛÝ     ÜÜÜÜÜÜÜ
      ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÜÜÜ         ÜÛÛÛÛßßßÛÛÛÛÛÜ   ÜÛÛ   ÜÜÛÛÛßßßßÛÛÛÛÜÜ
       ßÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÜ ßÜÜ ÜÛÛÛÛÛ     ÛÛÛÛÛÛÜÛÛß ÜÛÛÛÛÛ      ÛÛÛÛÛÛÜ
@@ -66,9 +86,5 @@ dotfiles-maniac zackn9ne's dotfiles
  °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
 </pre>
 
-zackn9nes dotfiles for vim & tmux nuff sed
-
-instructions: cd to ~/ and git clone
-instructions2: cd into repo and $stow vim to symlink them one level back to your ~/, then stow tmux, then stow whatever.
 
 *fin*
