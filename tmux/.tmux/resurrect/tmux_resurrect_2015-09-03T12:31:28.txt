@@ -1,0 +1,25 @@
+pane	0	1	:bash	1	:*	0	:/Users/netkam2	1	bash	:-bash
+pane	1	1	:bash	1	:*	0	:/Users/netkam2	1	bash	:-bash
+pane	2	1	:bash	1	:*	0	:/Users/netkam2/Downloads	1	bash	:-bash
+pane	3	1	:bash	1	:*	0	:/Users/netkam2/Downloads	1	bash	:-bash
+pane	4	1	:sarah	0	:#-	0	:/Users/netkam2/code/projects/nodewebapp	1	bash	:-bash
+pane	4	1	:sarah	0	:#-	1	:/Users/netkam2/code/projects/nodewebapp	0	bash	:-bash
+pane	4	1	:sarah	0	:#-	2	:/	0	bash	:-bash
+pane	4	2	:mongolecon	0	:#	0	:/Users/netkam2/Downloads	1	bash	:-bash
+pane	4	2	:mongolecon	0	:#	1	:/Users/netkam2/code/projects/cli_sarahexpress	0	bash	:-bash
+pane	4	3	:kent	0	:#	0	:/Users/netkam2/.tmux.plugins	1	bash	:-bash
+pane	4	4	:mickey	0	:#	0	:/Users/netkam2/code/projects/cli_macaulayNow/mac_blast_template	1	bash	:-bash
+pane	4	4	:mickey	0	:#	1	:/Users/netkam2/code/projects/cli_macaulayNow/mac_blast_template	0	bash	:-bash
+pane	4	5	:dan	1	:*	0	:/Users/netkam2/code/projects/cli_tlos_drupalbckup	1	bash	:-bash
+pane	5	1	:bash	1	:*	0	:/Users/netkam2	1	bash	:-bash
+window	0	1	1	:*	b25e,80x24,0,0,1
+window	1	1	1	:*	b25f,80x24,0,0,2
+window	2	1	1	:*	b260,80x24,0,0,3
+window	3	1	1	:*	b261,80x24,0,0,4
+window	4	1	0	:#-	2ad5,101x47,0,0[101x29,0,0,5,101x17,0,30{51x17,0,30,6,49x17,52,30,7}]
+window	4	2	0	:#	2d46,101x47,0,0[101x23,0,0,8,101x23,0,24,9]
+window	4	3	0	:#	63af,101x47,0,0,10
+window	4	4	0	:#	c67e,101x47,0,0[101x32,0,0,11,101x14,0,33,12]
+window	4	5	1	:*	63b3,101x47,0,0,14
+window	5	1	1	:*	5962,80x24,0,0,13
+state	4	4

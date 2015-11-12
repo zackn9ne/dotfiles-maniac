@@ -1,0 +1,18 @@
+pane	0	1	:bash	1	:*	0	:/Users/netkam2	1	bash	:
+pane	1	1	:bash	1	:*	0	:/Users/netkam2	1	bash	:
+pane	2	1	:bash	1	:*	0	:/Users/netkam2/Downloads	1	bash	:
+pane	3	1	:bash	1	:*	0	:/Users/netkam2/Downloads	1	vim	:vim /Users/netkam2/.vimrc
+pane	4	1	:resize-pane -U 10	1	:*	0	:/Users/netkam2/code/projects/cli_sarahexpress	0	bash	:
+pane	4	1	:resize-pane -U 10	1	:*	1	:/Users/netkam2/code/projects/cli_sarahexpress	0	bash	:
+pane	4	1	:resize-pane -U 10	1	:*	2	:/	1	bash	:
+pane	4	2	:mongo	0	:-	0	:/Users/netkam2/Downloads	0	bash	:
+pane	4	2	:mongo	0	:-	1	:/Users/netkam2/code/projects/cli_sarahexpress	1	bash	:
+pane	4	3	:kent	0	:#	0	:/Users/netkam2/.tmux.plugins	1	bash	:
+window	0	1	1	:*	c0fe,101x55,0,0,1
+window	1	1	1	:*	c0ff,101x55,0,0,2
+window	2	1	1	:*	c100,101x55,0,0,3
+window	3	1	1	:*	c101,101x55,0,0,4
+window	4	1	1	:*	7b87,131x53,0,0[131x25,0,0,5,131x27,0,26{66x27,0,26,6,64x27,67,26,7}]
+window	4	2	0	:-	ad3e,131x53,0,0[131x26,0,0,8,131x26,0,27,11]
+window	4	3	0	:#	b9c6,131x53,0,0,9
+state	4	4
