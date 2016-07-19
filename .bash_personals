@@ -1,0 +1,12 @@
+
+# http://stackoverflow.com/questions/10171280/how-to-launch-gui-emacs-from-command-line-in-osx
+alias emacs='open -a /Applications/Emacs.app $1'
+alias ec='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
+
+# search google from command line
+# what browser do you like?
+export BROWSER="Safari"
+function g() { open /Applications/$BROWSER.app/ "http://www.google.com/search?q= $1"; }
+
+alias ll='ls -lha'
+alias ls='ls -a'

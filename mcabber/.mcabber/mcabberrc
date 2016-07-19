@@ -11,7 +11,9 @@
 # If password is not given, it will be interactively asked for.
 # If port is not given, default Jabber port will be used.
 
-set jid = zackn9ne@gmail.com
+# Source secrets
+source ~/Dropbox/.sec/.mcabber_login
+set jid = $GOOGLEUSER
 
 # Note: if the password contains leading or trailing spaces, you must
 # enclose it with quotes: set password = " example password "
