@@ -13,11 +13,11 @@
 
 # Source secrets
 source ~/Dropbox/.sec/.mcabber_login
-set jid = $GOOGLEUSER
+set jid = $GOOGLEUSER@Google.com
 
 # Note: if the password contains leading or trailing spaces, you must
 # enclose it with quotes: set password = " example password "
-set password = 
+set password = $SECRETPW
 
 set server = talk.google.com
 
