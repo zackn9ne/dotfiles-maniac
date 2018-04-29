@@ -8,7 +8,7 @@ Plug 'scrooloose/syntastic'
 " Plug 'bling/vim-airline'
 Plug 'miyakogi/conoline.vim'    "ConoLineEnable
 Plug 'scrooloose/nerdcommenter' "Comma-c-space
-Plug 'powerline/powerline'
+" Plug 'powerline/powerline'
 
 
 " NERD tree will be loaded on the first invocation of NERDTreeToggle command
@@ -162,7 +162,7 @@ map E :Explore<cr> " \e to open file explorer incurrent dir
 
 " Syntax highlighting
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
@@ -171,7 +171,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " Boot conoline
-let g:conoline_auto_enable = 1
+"let g:conoline_auto_enable = 1
 "let g:airline#extensions#tabline#enabled = 1
 "set guifont=Liberation_Mono_for_Powerline:h10 
 "" Always show statusline
@@ -179,5 +179,5 @@ set t_Co=256
 
 
 " http://blog.codefront.net/2013/10/27/installing-powerline-on-os-x-homebrew/
-source /usr/local/lib/python3.4/site-packages/powerline/bindings/vim/plugin/powerline.vim
+" source /usr/local/lib/python3.4/site-packages/powerline/bindings/vim/plugin/powerline.vim
 set laststatus=2
