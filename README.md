@@ -31,6 +31,15 @@ dotfiles-maniac zackn9ne's dotfiles
     - https://www.gnu.org/software/stow/
 
 
+
+
+    ```
+    $ echo "take not of directories in dotfiles-maniac"
+    $ ls ~/dotfiles-maniac 
+    $ cd ~/
+    $ stow vim && stow bash && stow whatever-else
+    ```
+
     ÛÛÛÛÛÛÛÛÛÛÛÛÛÜÜ     ßßßß          ÜÜÜÜÜÜÜ    Ûß ßÛÛÝ     ÜÜÜÜÜÜÜ
      ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÜÜÜ         ÜÛÛÛÛßßßÛÛÛÛÛÜ   ÜÛÛ   ÜÜÛÛÛßßßßÛÛÛÛÜÜ
       ßÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÜ ßÜÜ ÜÛÛÛÛÛ     ÛÛÛÛÛÛÜÛÛß ÜÛÛÛÛÛ      ÛÛÛÛÛÛÜ
