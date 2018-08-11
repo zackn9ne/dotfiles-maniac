@@ -1,5 +1,5 @@
 dotfiles-maniac zackn9ne's dotfiles
-===============
+
 
     * how this works
       * there are 2 emacs base config files `.emacs && init.el`
