@@ -28,7 +28,7 @@
                                orig-fg))))
 ;;;
 ;;; orgizie
-(setq org-agenda-files (append '("~/Dropbox/files/")))
+(setq org-agenda-files (append '("~/MY_FILES/")))
 
 ;;; orgizie
 (setq org-todo-keywords
@@ -48,4 +48,8 @@
 
 
 
+
+;;; load some files
+(find-file (concat user-emacs-directory "init.el"))
+;(if (file-writable-p (concat default-directory "notes.org") (print 'were\ here)))
 

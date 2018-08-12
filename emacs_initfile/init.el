@@ -25,50 +25,52 @@
 
 
 ;; set default directory
-(setq default-directory "~/Dropbox/files/")
+(setq default-directory "~/MY_FILES/")
 
 
 
-(add-hook 'find-file-hook #'(lambda () (setq default-directory (expand-file-name "~/Documents/emacs/files/"))))
-
-
-
-
-;;; load some files
-(find-file (concat user-emacs-directory "init.el"))
-;(if (file-writable-p (concat default-directory "notes.org") (print 'were\ here)))
-
-;(Find-file (concat default-directory "notes.org")
-;)
+(add-hook 'find-file-hook #'(lambda () (setq default-directory (expand-file-name "~/MY_FILES/"))))
 
 
 
 
-;;; load some init files
-;; load from
-(setq my-directory "~/dotfiles_maniac/emacs_modularized")
+
+;;; load some init from FILES repo eg secrets [1/2]
+;; (setq modularize-directory "~/dotfiles-maniac/emacs_modularized")
 ;; do the modularize
-(defun load-user-file (file)
+(defun load-user-file-fromfilesrepo (file)
   (interactive "f")
   "Load a file in current user's configuration directory"
-  (load-file (expand-file-name file my-directory)))
-
-(load-user-file "secrets.el") ; gitignored dont panic
-(load-user-file "myfuncs.el")
-(load-user-file "pwgen.el")
-(load-user-file "myconfigs.el")
-(load-user-file "spelling.el")
-;(load-user-file "ido.el")
-(load-user-file "ivy.el")
-;(load-user-file "helmhelp.el")
-(load-user-file "erc.el")
+  (load-file (expand-file-name file default-directory)))
+(load-user-file-fromfilesrepo "secrets.el") ; in another REPO & .gitignored dont panic
 
 
+;;; load some init from modularize repo [2/2]
+;; load from
+(setq modularize-directory "~/dotfiles-maniac/emacs_modularized")
+;; do the modularize
+(defun load-user-file-from-modularized (file)
+  (interactive "f")
+  "Load a file in current user's configuration directory"
+  (load-file (expand-file-name file modularize-directory)))
 
-;  (if (file-readable-p (concat my-directory "erc.el"))
-;      (load (concat my-directory "erc.el" nil t)
+
+(load-user-file-from-modularized "myfuncs.el")
+(load-user-file-from-modularized "pwgen.el")
+(load-user-file-from-modularized "myconfigs.el")
+(load-user-file-from-modularized "spelling.el")
+;(load-user-file-from-modularized "ido.el")
+(load-user-file-from-modularized "ivy_swiper_counsel.el")
+(load-user-file-from-modularized "projectile.el")
+;(load-user-file-from-modularized "helmhelp.el")
+(load-user-file-from-modularized "erc.el")
+
+
+
+;  (if (file-readable-p (concat modularize-directory "erc.el"))
+;      (load (concat modularize-directory "erc.el" nil t)
 ;    )))
 
 
 
-;(load-user-file "yasnippet.el")
+;(load-user-file-from-modularized "yasnippet.el")
