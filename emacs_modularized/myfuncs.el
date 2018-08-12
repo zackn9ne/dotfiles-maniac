@@ -1,9 +1,25 @@
+(defun my/diredManiac ()
+  (interactive)
+  (find-file "~/dotfiles-maniac")
+  )
+(defun my/diredMYFILES ()
+  (interactive)
+  (find-file "~/MY_FILES")
+  )
+
+(defun my/autocommit-after-save-hook ()
+  "After-save-hook to 'git add' the modified file and schedule a commit and push in the idle loop."
+
+    (shell-command (concat "git add -A ." fn)))
+
+
+
 
 ;(defun my/org-file-by-date-with-inline-skeleton ()
 (defun my/quicknote ()
   "Create Org file from skeleton with current time as name."
   (interactive)
-  (find-file (format-time-string "~/Documents/emacs/files/%Y-%m-%d--%H-%M-%S.org"))
+  (find-file (format-time-string "~/MY_FILES/%Y-%m-%d--%H-%M-%S.org"))
   (insert "#+TITLE:     Emacs org-mode quicknote
 #+AUTHOR:    Zack Levine.
 #+EMAIL:     zackn9ne@gmail.com
