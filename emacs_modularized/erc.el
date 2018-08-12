@@ -6,8 +6,8 @@
 
      ;; Set personal information
 
-     (setq erc-nick ircnick)
-     (setq erc-user-full-name ircnick)
+;     (setq erc-nick ircnick)
+;     (setq erc-user-full-name ircnick)
 
 
 ;    (add-hook 'erc-after-connect '(lambda (SERVER NICK)

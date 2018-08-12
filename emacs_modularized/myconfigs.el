@@ -1,4 +1,6 @@
-(setq org-agenda-files (append '("~/Documents/files/emacs" "~/.emacs.d")))
+(global-auto-revert-mode)
+
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -24,7 +26,9 @@
           (run-with-idle-timer 0.1 nil
                                (lambda (fg) (set-face-foreground 'mode-line fg))
                                orig-fg))))
-
+;;;
+;;; orgizie
+(setq org-agenda-files (append '("~/Dropbox/files/")))
 
 ;;; orgizie
 (setq org-todo-keywords
@@ -33,10 +37,10 @@
 ;;; sane defaults
 (load-theme 'light-blue t)
 (setq make-backup-files nil) ; stop creating backup~ files
-;; (setq auto-save-default nil) ; stop creating #autosave# files
+(setq auto-save-default nil) ; stop creating #autosave# files
 ;; backup in one place. flat, no tree structure
 (setq backup-directory-alist '(("" . "~/.emacs.d/emacs-backup")))
-(global-set-key (kbd "C-x C-;") 'comment-region)
+(global-set-key (kbd "C-c C-c") 'comment-region)
 (setq lazy-highlight-cleanup nil)
 (global-hl-line-mode +1)
 (savehist-mode 1)
