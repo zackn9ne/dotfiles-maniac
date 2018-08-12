@@ -62,6 +62,7 @@
 ;(load-user-file-from-modularized "ido.el")
 (load-user-file-from-modularized "ivy_swiper_counsel.el")
 (load-user-file-from-modularized "projectile.el")
+(load-user-file-from-modularized "magit.el")
 ;(load-user-file-from-modularized "helmhelp.el")
 (load-user-file-from-modularized "erc.el")
 
