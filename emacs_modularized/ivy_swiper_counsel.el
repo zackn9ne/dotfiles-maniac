@@ -18,7 +18,15 @@
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
 
 
-(global-set-key (kbd "C-c C-s") 'counsel-ag)
+(global-set-key (kbd "C-x C-r") 'counsel-ag)
 (global-set-key (kbd "C-x l") 'counsel-locate)
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+
+
+;; now with projectile
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+(setq projectile-switch-project-action 'projectile-vc)

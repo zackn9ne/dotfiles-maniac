@@ -7,10 +7,6 @@
   (find-file "~/MY_FILES")
   )
 
-(defun my/autocommit-after-save-hook ()
-  "After-save-hook to 'git add' the modified file and schedule a commit and push in the idle loop."
-
-    (shell-command (concat "git add -A ." fn)))
 
 
 
@@ -27,6 +23,7 @@
 #+TODO: TODO(t) | DONE(d)
 #+TODO: REPORT(r) BUG(b) KNOWNCAUSE(k) | FIXED(f)
 #+TODO: | CANCELED(c)
+#+STARTUP: showall
 "))
 
 (defun my/org-file-by-date-with-file-skeleton ()
