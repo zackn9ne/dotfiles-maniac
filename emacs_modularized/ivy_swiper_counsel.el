@@ -18,7 +18,7 @@
 (global-set-key (kbd "C-c j") 'counsel-git-grep)
 
 
-(global-set-key (kbd "C-x C-r") 'counsel-ag)
+(global-set-key (kbd "C-x r") 'counsel-ag)
 (global-set-key (kbd "C-x l") 'counsel-locate)
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
