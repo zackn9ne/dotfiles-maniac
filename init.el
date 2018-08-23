@@ -8,6 +8,19 @@
    t))
 
 
+;; Use package.el to manage packages
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://9bug.github.io/melpa-stable/") t)
+(package-initialize)
+
+;; use-package
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+
+
 
 
 ;;; show paren
@@ -25,29 +38,23 @@
 
 
 ;; set default directory
-(setq default-directory "~/MY_FILES/")
+(setq default-directory "~/")
 
 
 
-(add-hook 'find-file-hook #'(lambda () (setq default-directory (expand-file-name "~/MY_FILES/"))))
+(add-hook 'find-file-hook #'(lambda () (setq default-directory (expand-file-name "~/"))))
 
 
 
 
 
-;;; load some init from FILES repo eg secrets [1/2]
-;; (setq modularize-directory "~/dotfiles-maniac/emacs_modularized")
-;; do the modularize
-(defun load-user-file-fromfilesrepo (file)
-  (interactive "f")
-  "Load a file in current user's configuration directory"
-  (load-file (expand-file-name file default-directory)))
-(load-user-file-fromfilesrepo "secrets.el") ; in another REPO & .gitignored dont panic
 
 
-;;; load some init from modularize repo [2/2]
-;; load from
+;;; load some init from modularize repo 
+;; setvars
+(setq dotfilesrepo-directory "~/dotfiles-maniac")
 (setq modularize-directory "~/dotfiles-maniac/emacs_modularized")
+
 ;; do the modularize
 (defun load-user-file-from-modularized (file)
   (interactive "f")
@@ -55,16 +62,24 @@
   (load-file (expand-file-name file modularize-directory)))
 
 
+(load-user-file-from-modularized "myconfigs.el") ;first
 (load-user-file-from-modularized "myfuncs.el")
 (load-user-file-from-modularized "pwgen.el")
-(load-user-file-from-modularized "myconfigs.el")
 (load-user-file-from-modularized "spelling.el")
 ;(load-user-file-from-modularized "ido.el")
-(load-user-file-from-modularized "ivy_swiper_counsel.el")
+;(load-user-file-from-modularized "ivy_swiper_counsel.el")
 (load-user-file-from-modularized "projectile.el")
-(load-user-file-from-modularized "magit.el")
-;(load-user-file-from-modularized "helmhelp.el")
+;(load-user-file-from-modularized "magit.el")
+(load-user-file-from-modularized "helmhelp.el")
 (load-user-file-from-modularized "erc.el")
+
+
+
+(defun load-user-file-fromfilesrepo (file)
+  (interactive "f")
+  "Load a file in current user's configuration directory"
+  (load-file (expand-file-name file default-directory)))
+;(load-user-file-fromfilesrepo "secrets.el") ; in another REPO & .gitignored dont panic
 
 
 
@@ -75,3 +90,5 @@
 
 
 ;(load-user-file-from-modularized "yasnippet.el")
+;;; load this file
+(find-file "~/dotfiles-maniac/init.el")

@@ -1,5 +1,19 @@
 ; ivy-counsel-swiper combo, wow, see notes section of this repo mind blown
 ;https://github.com/abo-abo/swiper
+;; ivy
+(use-package ivy
+  :ensure t
+  :diminish ivy-mode
+  :config
+  (ivy-mode 1)
+  (bind-key "C-c C-r" 'ivy-resume))
+
+
+(use-package counsel
+  :ensure t
+
+)
+
 
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)

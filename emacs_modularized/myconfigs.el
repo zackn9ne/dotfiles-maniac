@@ -1,4 +1,11 @@
-(global-auto-revert-mode)
+(global-auto-revert-mode)  ; pickup changes
+
+;; dont leak secrets
+(setq make-backup-files nil) ; stop creating backup~ files
+(setq auto-save-default nil) ; stop creating #autosave# files
+
+
+(global-hl-line-mode +1)
 
 
 
@@ -28,7 +35,7 @@
                                orig-fg))))
 ;;;
 ;;; orgizie
-(setq org-agenda-files (append '("~/MY_FILES/")))
+(setq org-agenda-files (append '("~/org")))
 
 ;;; orgizie
 (setq org-todo-keywords
@@ -36,20 +43,16 @@
 
 ;;; sane defaults
 (load-theme 'light-blue t)
-(setq make-backup-files nil) ; stop creating backup~ files
-(setq auto-save-default nil) ; stop creating #autosave# files
+
 ;; backup in one place. flat, no tree structure
 (setq backup-directory-alist '(("" . "~/.emacs.d/emacs-backup")))
 (global-set-key (kbd "C-c C-c") 'comment-region)
 (setq lazy-highlight-cleanup nil)
-(global-hl-line-mode +1)
 (savehist-mode 1)
 (setq savehist-file "~/.emacs.d/savehist")
 
 
 
 
-;;; load some files
-(find-file (concat user-emacs-directory "init.el"))
 ;(if (file-writable-p (concat default-directory "notes.org") (print 'were\ here)))
 
