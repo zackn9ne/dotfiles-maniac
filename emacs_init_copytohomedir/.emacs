@@ -59,9 +59,11 @@
   ;;; For a description and the settings see /etc/skel/.gnu-emacs
   ;;;   ... for your private ~/.gnu-emacs your are on your one.
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  (if (file-readable-p "~/.emacs.d/init.el")
-      (load "~/.emacs.d/init.el" nil t)
+  (if (file-readable-p "~/dotfiles-maniac/init.el")
+      (load "~/dotfiles-maniac/init.el" nil t)
     )
+
+
 
 
 
