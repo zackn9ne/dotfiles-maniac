@@ -14,47 +14,21 @@
              '("melpa-stable" . "https://9bug.github.io/melpa-stable/") t)
 (package-initialize)
 
-;; use-package
+;; use-package 2/2
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
-
-
-
-
-;;; show paren
+;;; show paren for debugging
     (show-paren-mode 1)
     (setq show-paren-delay 0)
-
-
-
-;; wordwrap by mode
-(add-hook 'org-mode-hook #'visual-line-mode)
-
-
-
-
-
-
-;; set default directory
-(setq default-directory "~/")
-
-
-
-(add-hook 'find-file-hook #'(lambda () (setq default-directory (expand-file-name "~/"))))
-
-
-
-
-
-
 
 ;;; load some init from modularize repo 
 ;; setvars
 (setq dotfilesrepo-directory "~/dotfiles-maniac")
-(setq modularize-directory "~/dotfiles-maniac/emacs_modularized")
 
+;; where is modularized dir?
+(setq modularize-directory "~/dotfiles-maniac/emacs_modularized")
 ;; do the modularize
 (defun load-user-file-from-modularized (file)
   (interactive "f")
@@ -63,6 +37,7 @@
 
 
 (load-user-file-from-modularized "myconfigs.el") ;first
+(load-user-file-from-modularized "org.el")
 (load-user-file-from-modularized "myfuncs.el")
 (load-user-file-from-modularized "pwgen.el")
 (load-user-file-from-modularized "spelling.el")
@@ -91,4 +66,20 @@
 
 ;(load-user-file-from-modularized "yasnippet.el")
 ;;; load this file
+
+; open this buffer in case you need to edit
 (find-file "~/dotfiles-maniac/init.el")
+
+
+					; find file buffer
+; modularize-directory var being used from above 
+
+(defun loadbuffers-forediting-modularized (file)
+  (interactive "f")
+  "Load a file in current user's configuration directory"
+  (find-file (expand-file-name file modularize-directory)))
+
+(loadbuffers-forediting-modularized "myconfigs.el")
+
+
+

@@ -33,13 +33,6 @@
           (run-with-idle-timer 0.1 nil
                                (lambda (fg) (set-face-foreground 'mode-line fg))
                                orig-fg))))
-;;;
-;;; orgizie
-(setq org-agenda-files (append '("~/org")))
-
-;;; orgizie
-(setq org-todo-keywords
-  '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
 
 ;;; sane defaults
 (load-theme 'light-blue t)

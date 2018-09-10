@@ -1,21 +1,8 @@
-(defun my/diredManiac ()
-  (interactive)
-  (find-file "~/dotfiles-maniac")
-  )
-(defun my/diredMYFILES ()
-  (interactive)
-  (find-file "~/MY_FILES")
-  )
-
-
-
-
-
 ;(defun my/org-file-by-date-with-inline-skeleton ()
 (defun my/quicknote ()
   "Create Org file from skeleton with current time as name."
   (interactive)
-  (find-file (format-time-string "~/MY_FILES/%Y-%m-%d--%H-%M-%S.org"))
+  (find-file (format-time-string "~/Dropbox/org/%Y-%m-%d--%H-%M-%S.org"))
   (insert "#+TITLE:     Emacs org-mode quicknote
 #+AUTHOR:    Zack Levine.
 #+EMAIL:     zackn9ne@gmail.com
@@ -120,12 +107,3 @@ Version 2017-09-01"
          $fpath )))))
 
 
-(defvar script-name "~/.rsync-org-mode.sh")
-
-(defun call-my-script-with-word ()
-(interactive)
-(shell-command
-(concat script-name 
-       " "
-       (thing-at-point 'word))))
-(global-set-key (kbd "M-<f11>") 'call-my-script-with-word)
