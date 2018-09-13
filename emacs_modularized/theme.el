@@ -1,5 +1,7 @@
 (use-package calmer-forest-theme
   :ensure t)
+(use-package color-theme-modern
+  :ensure t)
 
 ;(load-theme 'light-blue t)
 ;(load-theme 'solarized-dark t)
