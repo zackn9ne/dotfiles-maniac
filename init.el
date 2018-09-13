@@ -35,24 +35,25 @@
   (interactive "f")
   (load-file (expand-file-name file modularize-directory)))
 
-(load-user-file-from-modularized "myconfigs.el") ;first
-(load-user-file-from-modularized "org.el")
-(load-user-file-from-modularized "myfuncs.el")
-(load-user-file-from-modularized "pwgen.el")
-(load-user-file-from-modularized "spelling.el")
-;(load-user-file-from-modularized "ido.el")
-;(load-user-file-from-modularized "ivy_swiper_counsel.el")
-(load-user-file-from-modularized "projectile.el")
-;(load-user-file-from-modularized "magit.el")
-(load-user-file-from-modularized "helmhelp.el")
-(load-user-file-from-modularized "erc.el")
-(load-user-file-from-modularized "w3m.el")
-(load-user-file-from-modularized "jabber.el")
-(load-user-file-from-modularized "theme.el")
+;; (load-user-file-from-modularized "myconfigs.el") ;first
+;; (load-user-file-from-modularized "org.el")
+;; (load-user-file-from-modularized "myfuncs.el")
+;; (load-user-file-from-modularized "pwgen.el")
+;; (load-user-file-from-modularized "spelling.el")
+;; ;(load-user-file-from-modularized "ido.el")
+;; ;(load-user-file-from-modularized "ivy_swiper_counsel.el")
+;; (load-user-file-from-modularized "projectile.el")
+;; ;(load-user-file-from-modularized "magit.el")
+;; (load-user-file-from-modularized "helmhelp.el")
+;; (load-user-file-from-modularized "erc.el")
+;; (load-user-file-from-modularized "w3m.el")
+;; (load-user-file-from-modularized "jabber.el")
+;; (load-user-file-from-modularized "theme.el")
 
+(require 'cl) ; you need this to run map func everywhere
 (map nil 'load-user-file-from-modularized el-files)
 
-; open this aray in buffers
+; open a bunch a buffers
 (find-file "~/dotfiles-maniac/init.el")
 ; modularize-directory var being used from above 
 (defun loadbuffers-forediting-modularized (file)
