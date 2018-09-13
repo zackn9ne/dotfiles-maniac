@@ -1,4 +1,5 @@
-(global-auto-revert-mode)  ; pickup changes
+; pickup changes on disk
+(global-auto-revert-mode)  
 
 ;; dont leak secrets
 (setq make-backup-files nil) ; stop creating backup~ files
@@ -34,8 +35,6 @@
                                (lambda (fg) (set-face-foreground 'mode-line fg))
                                orig-fg))))
 
-;;; sane defaults
-(load-theme 'light-blue t)
 
 ;; backup in one place. flat, no tree structure
 (setq backup-directory-alist '(("" . "~/.emacs.d/emacs-backup")))

@@ -2,7 +2,7 @@
 (defun my/quicknote ()
   "Create Org file from skeleton with current time as name."
   (interactive)
-  (find-file (format-time-string "~/Dropbox/org/%Y-%m-%d--%H-%M-%S.org"))
+  (find-file (format-time-string "~/org/%Y-%m-%d--%H-%M-%S.org"))
   (insert "#+TITLE:     Emacs org-mode quicknote
 #+AUTHOR:    Zack Levine.
 #+EMAIL:     zackn9ne@gmail.com

@@ -28,13 +28,12 @@
 (setq dotfilesrepo-directory "~/dotfiles-maniac")
 
 ;; where is modularized dir?
+(setq el-files '("myconfigs.el" "org.el" "myfuncs.el" "pwgen.el" "spelling.el" "projectile.el" "helmhelp.el" "erc.el" "w3m.el" "jabber.el" "theme.el"))  ;; array syntax
 (setq modularize-directory "~/dotfiles-maniac/emacs_modularized")
-;; do the modularize
+;; load below array into init
 (defun load-user-file-from-modularized (file)
   (interactive "f")
-  "Load a file in current user's configuration directory"
   (load-file (expand-file-name file modularize-directory)))
-
 
 (load-user-file-from-modularized "myconfigs.el") ;first
 (load-user-file-from-modularized "org.el")
@@ -47,39 +46,26 @@
 ;(load-user-file-from-modularized "magit.el")
 (load-user-file-from-modularized "helmhelp.el")
 (load-user-file-from-modularized "erc.el")
+(load-user-file-from-modularized "w3m.el")
+(load-user-file-from-modularized "jabber.el")
+(load-user-file-from-modularized "theme.el")
 
+(map nil 'load-user-file-from-modularized el-files)
 
-
-(defun load-user-file-fromfilesrepo (file)
-  (interactive "f")
-  "Load a file in current user's configuration directory"
-  (load-file (expand-file-name file default-directory)))
-;(load-user-file-fromfilesrepo "secrets.el") ; in another REPO & .gitignored dont panic
-
-
-
-;  (if (file-readable-p (concat modularize-directory "erc.el"))
-;      (load (concat modularize-directory "erc.el" nil t)
-;    )))
-
-
-
-;(load-user-file-from-modularized "yasnippet.el")
-;;; load this file
-
-; open this buffer in case you need to edit
+; open this aray in buffers
 (find-file "~/dotfiles-maniac/init.el")
-
-
-					; find file buffer
 ; modularize-directory var being used from above 
-
 (defun loadbuffers-forediting-modularized (file)
   (interactive "f")
-  "Load a file in current user's configuration directory"
   (find-file (expand-file-name file modularize-directory)))
 
-(loadbuffers-forediting-modularized "myconfigs.el")
+;; (loadbuffers-forediting-modularized "myconfigs.el")
+;; (loadbuffers-forediting-modularized "myfuncs.el")
+;; (loadbuffers-forediting-modularized "projectile.el")
+;; (loadbuffers-forediting-modularized "jabber.el")
+;; (loadbuffers-forediting-modularized "theme.el")
+;;(loadbuffers-forediting-modularized "w3m.el")
 
-
-
+(map nil 'loadbuffers-forediting-modularized el-files)
+(find-file "~/.gnu-emacs-custom")
+(server-start)

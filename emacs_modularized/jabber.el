@@ -1,3 +1,7 @@
+(use-package jabber
+  :ensure t)
+
+
 (setq jabber-account-list 
 '(("zackn9ne@gmail.com"
 (:network-server . "talk.google.com")
