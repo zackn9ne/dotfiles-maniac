@@ -1,19 +1,42 @@
 (show-paren-mode 1)
 (global-display-line-numbers-mode 1)
 (global-hl-line-mode 1)
+(setq visible-bell 1)
+;(set-frame-font "Terminus 12" nil t)
+(set-frame-font "DejaVu Sans Mono 16")
+
 
 (require 'package)
-;; Hack for using a different set of repositories when ELPA is down
-(setq package-archives
-      '(("melpa" . "https://raw.githubusercontent.com/d12frosted/elpa-mirror/master/melpa/")
-        ("org"   . "https://raw.githubusercontent.com/d12frosted/elpa-mirror/master/org/")
-        ("gnu"   . "https://raw.githubusercontent.com/d12frosted/elpa-mirror/master/gnu/")))
-;; (setq package-check-signature nil) ;; probably not necessary
+(add-to-list 'package-archives
+             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 (package-initialize)
 
 
+;; update local database then install use-package if it's not installed
+(unless (package-installed-p 'use-package)
+ (package-refresh-contents)
+ (package-install 'use-package))
 
 (require 'use-package)
+;; tell use-package to install a package if it's not already installed
+(setq use-package-always-ensure t)
+
+
+(use-package helm
+  :bind (("M-x" . helm-M-x)
+
+	 ( "M-x" . helm-M-x)
+	 ( "C-x C-f" . helm-find-files)
+         ( "C-x C-b" . helm-buffers-list)
+         ( "C-x C-r" . helm-recentf))
+  :config (helm-mode 1)
+  )
+
+
+(use-package magit
+ :bind (("C-x g" . magit)))
+
+
 ;;nyan mode
  (use-package nyan-mode
   :ensure t
@@ -27,19 +50,6 @@
    ;(nyan-cat-face-number 0)
 
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(helm-ag geben-helm-projectile helm-projectile projectile yaml-mode flycheck-yamllint magit groovy-mode jedi hippie-exp-ext auto-complete nyan-mode use-package)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
 
 (setq org-todo-keywords
@@ -54,9 +64,6 @@
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
-(helm-mode 1)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)                 ; optional
@@ -64,7 +71,7 @@
 
 (use-package projectile
   :ensure t
-  :bind (("C-p s" . projectile-switch-open-project)
+  :bind (("C-x s" . projectile-switch-open-project)
 	 ("C-x p" . projectile-switch-project))
   :config
   (projectile-global-mode)
@@ -76,3 +83,6 @@
   :config
   (helm-projectile-on))
 
+(use-package yaml-mode
+  :ensure t
+  )
