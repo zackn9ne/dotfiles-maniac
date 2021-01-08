@@ -3,7 +3,7 @@
 (global-hl-line-mode 1)
 (setq visible-bell 1)
 ;(set-frame-font "Terminus 12" nil t)
-(set-frame-font "DejaVu Sans Mono 16")
+(set-frame-font "DejaVu Sans Mono 12")
 
 
 (require 'package)
@@ -53,7 +53,7 @@
 
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
+      '((sequence "TODO(t)" "WAIT(w@/!)" "InProg(i)" "|" "DONE(d!)" "CANCELED(c@)")))
 
 
 
@@ -89,16 +89,52 @@
 (use-package json-mode
   :ensure t
   )
+(use-package terraform-mode
+  :hook
+  (terraform-mode . company-mode)
+  (terraform-mode . (lambda ()
+                      (when (and (stringp buffer-file-name)
+                        (string-match "\\.tf\\(vars\\)?\\'" buffer-file-name))
+                          (aggressive-indent-mode 0))))
+
+  (before-save . terraform-format-buffer))
+
+
+
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(json-mode helm-ag geben-helm-projectile helm-projectile projectile yaml-mode flycheck-yamllint magit groovy-mode jedi hippie-exp-ext auto-complete nyan-mode use-package)))
+   '(terraform-mode json-mode helm-ag geben-helm-projectile helm-projectile projectile yaml-mode flycheck-yamllint magit groovy-mode jedi hippie-exp-ext auto-complete nyan-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
+(defun org-insert-source-block (name language switches header)
+    "Asks name, language, switches, header.
+Inserts org-mode source code snippet"
+      (interactive "sname? 
+slanguage? 
+sswitches? 
+sheader? ")
+      (insert
+       (if (string= name "")
+	   ""
+	 (concat "#+NAME: " name) )
+          (format "
+#+BEGIN_SRC %s %s %s
+
+#+END_SRC" language switches header
+)
+	  )
+      (forward-line -1)
+      (goto-char (line-end-position))
+        )
