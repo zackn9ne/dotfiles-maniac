@@ -7,8 +7,12 @@
 
 
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+             ("melpa" . "https://melpa.org/packages/")
+             ("marmalade" . "https://marmalade-repo.org/packages/")
+             ("melpa-stable" . "https://stable.melpa.org/packages/")
+             ("elpy" . "https://jorgenschaefer.github.io/packages/")))
+
 (package-initialize)
 
 
@@ -83,6 +87,11 @@
   :config
   (helm-projectile-on))
 
+(use-package spacemacs-common
+    :ensure spacemacs-theme
+    :config (load-theme 'spacemacs-dark t))
+
+
 (use-package yaml-mode
   :ensure t
   )
@@ -109,7 +118,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(terraform-mode json-mode helm-ag geben-helm-projectile helm-projectile projectile yaml-mode flycheck-yamllint magit groovy-mode jedi hippie-exp-ext auto-complete nyan-mode use-package)))
+   '(spacemacs-theme molokai-theme color-theme color-theme-solarized terraform-mode json-mode helm-ag geben-helm-projectile helm-projectile projectile yaml-mode flycheck-yamllint magit groovy-mode jedi hippie-exp-ext auto-complete nyan-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
