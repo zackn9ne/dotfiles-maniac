@@ -4,7 +4,8 @@
 (setq visible-bell 1)
 ;(set-frame-font "Terminus 12" nil t)
 (set-frame-font "DejaVu Sans Mono 12")
-
+(menu-bar-mode -1)
+(tool-bar-mode -1)
 
 (require 'package)
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
@@ -147,3 +148,13 @@ sheader? ")
       (forward-line -1)
       (goto-char (line-end-position))
         )
+
+(defun my/org-it ()
+  "Create ORG file with date and time"
+  (interactive)
+  (write-file (format-time-string "~/%Y-%m-%d--%H-%M-%S.org"))
+  )
+
+(setq find-file-visit-truename t)
+(find-file "~/.emacs")
+
