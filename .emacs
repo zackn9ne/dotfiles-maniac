@@ -2,10 +2,12 @@
 (global-display-line-numbers-mode 1)
 (global-hl-line-mode 1)
 (setq visible-bell 1)
-;(set-frame-font "Terminus 12" nil t)
-(set-frame-font "DejaVu Sans Mono 12")
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+;(set-frame-font "Terminus 12" nil t)
+(set-frame-font "DejaVu Sans Mono 12")
+(set-frame-font "Terminess Powerline 14")
+
 
 (require 'package)
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")

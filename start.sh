@@ -1,6 +1,27 @@
 #!/bin/sh
 
-
+ 
+read -r -p "Wanna setup a gpg key? [Y/n] " input
+ 
+case $input in
+    [yY][eE][sS]|[yY])
+ echo "Did you backup your private key, if not gpg-backup and store the .asc somewhere safe."
+ echo "Yes, then download your backed up private key."
+ echo "run gpg --import /path/to/private/key.asc"
+ echo "take note of your pub key after you import"
+ echo "gpg --list-keys"
+ echo "run pass init VALUEOFYOURPUBLICKEY"
+ echo "make sure your key is trusted"
+ echo "gpg --edit-key VALUEOFYOURPUBLICKEY... trust, 5, save"
+ ;;
+    [nN][oO]|[nN])
+ echo "No"
+       ;;
+    *)
+ echo "Invalid input..."
+ exit 1
+ ;;
+esac
  
 read -r -p "Wanna setup git? [Y/n] " input
  
