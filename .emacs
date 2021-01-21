@@ -1,5 +1,5 @@
 (show-paren-mode 1)
-(toggle-truncate-lines 1)
+(global-visual-line-mode t)
 (global-display-line-numbers-mode 1)
 (global-hl-line-mode 1)
 (setq visible-bell 1)
