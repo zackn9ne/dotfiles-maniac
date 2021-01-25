@@ -157,7 +157,20 @@ sheader? ")
   (interactive)
   (write-file (format-time-string "~/%Y-%m-%d--%H-%M-%S.org"))
   )
+(defun my/org-codeblock ()
+  "Insert <codeblock> at cursor point."
+  (interactive)
+  (insert "#+BEGIN_SRC json
+do stuff
+#+END_SRC")
+  (backward-char 14))
 
 (setq find-file-visit-truename t)
 (find-file "~/.emacs")
 
+(defun my/current-file-is ()
+  "Show the full path file name in the minibuffer."
+  (interactive)
+  (message (buffer-file-name))
+  (kill-new (file-truename buffer-file-name))
+)
