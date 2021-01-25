@@ -40,6 +40,12 @@
   :config (helm-mode 1)
   )
 
+(use-package helm-projectile
+  :ensure t
+  :bind ("M-t" . helm-projectile-find-file)
+  :config
+  (helm-projectile-on))
+
 
 (use-package magit
  :bind (("C-x g" . magit)))
@@ -94,7 +100,6 @@
 (use-package spacemacs-common
     :ensure spacemacs-theme
     :config (load-theme 'spacemacs-dark t))
-
 
 (use-package yaml-mode
   :ensure t
