@@ -30,16 +30,6 @@
 (setq use-package-always-ensure t)
 
 
-(use-package helm
-  :bind (("M-x" . helm-M-x)
-
-	 ( "M-x" . helm-M-x)
-	 ( "C-x C-f" . helm-find-files)
-         ( "C-x C-b" . helm-buffers-list)
-         ( "C-x C-r" . helm-recentf))
-  :config (helm-mode 1)
-  )
-
 
 (use-package magit
  :bind (("C-x g" . magit)))
@@ -77,24 +67,10 @@
 (setq jedi:complete-on-dot t)                 ; optional
 (global-set-key (kbd "C-S-s") 'isearch-forward-symbol-at-point)
 
-(use-package projectile
-  :ensure t
-  :bind (("C-x s" . projectile-switch-open-project)
-	 ("C-x p" . projectile-switch-project))
-  :config
-  (projectile-global-mode)
-  (setq projectile-enable-caching t))
-
-(use-package helm-projectile
-  :ensure t
-  :bind ("M-t" . helm-projectile-find-file)
-  :config
-  (helm-projectile-on))
 
 (use-package spacemacs-common
     :ensure spacemacs-theme
     :config (load-theme 'spacemacs-dark t))
-
 
 (use-package yaml-mode
   :ensure t
@@ -122,7 +98,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(spacemacs-theme molokai-theme color-theme color-theme-solarized terraform-mode json-mode helm-ag geben-helm-projectile helm-projectile projectile yaml-mode flycheck-yamllint magit groovy-mode jedi hippie-exp-ext auto-complete nyan-mode use-package)))
+   '(ivy-rich counsel spacemacs-theme molokai-theme color-theme color-theme-solarized terraform-mode json-mode helm-ag geben-helm-projectile helm-projectile projectile yaml-mode flycheck-yamllint magit groovy-mode jedi hippie-exp-ext auto-complete nyan-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -168,9 +144,66 @@ do stuff
 (setq find-file-visit-truename t)
 (find-file "~/.emacs")
 
+
 (defun my/current-file-is ()
   "Show the full path file name in the minibuffer."
   (interactive)
   (message (buffer-file-name))
   (kill-new (file-truename buffer-file-name))
 )
+
+; ivy-counsel-swiper combo, wow, see notes section of this repo mind blown
+;https://github.com/abo-abo/swiper
+;; ivy
+(use-package ivy
+  :ensure t
+  :diminish ivy-mode
+  :config
+  (ivy-mode 1)
+  (bind-key "C-c C-r" 'ivy-resume))
+
+
+(use-package counsel
+  :ensure
+)
+
+
+(use-package counsel
+  :ensure t
+  :config
+  (global-set-key (kbd "M-x") 'counsel-M-x)
+  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+  (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+  (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+  (global-set-key (kbd "<f1> l") 'counsel-find-library)
+  (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+  (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+  (global-set-key (kbd "C-c g") 'counsel-git)
+  (global-set-key (kbd "C-c j") 'counsel-git-grep)
+  (global-set-key (kbd "C-c a") 'counsel-ag)
+  (global-set-key (kbd "C-x l") 'counsel-locate)
+  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
+
+
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
+(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "<f6>") 'ivy-resume)
+;(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+;; (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+;; (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+;; (global-set-key (kbd "<f1> l") 'counsel-find-library)
+;; (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+;; (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+(global-set-key (kbd "C-c g") 'counsel-git)
+(global-set-key (kbd "C-c j") 'counsel-git-grep)
+
+
+(global-set-key (kbd "C-x r") 'counsel-ag)
+(global-set-key (kbd "C-x l") 'counsel-locate)
+(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+>>>>>>> 3eca99738f90121742d5b50ee7f534715709f154
