@@ -12,7 +12,7 @@
 
 (require 'package)
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-             ("melpa" . "https://melpa.org/packages/")
+             ("melpa" . "http://melpa.org/packages/")
              ("marmalade" . "https://marmalade-repo.org/packages/")
              ("melpa-stable" . "https://stable.melpa.org/packages/")
              ("elpy" . "https://jorgenschaefer.github.io/packages/")))
@@ -29,7 +29,8 @@
 ;; tell use-package to install a package if it's not already installed
 (setq use-package-always-ensure t)
 
-
+(use-package ivy
+  :ensure)
 
 (use-package magit
  :bind (("C-x g" . magit)))
@@ -92,19 +93,6 @@
 
 
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(ivy-rich counsel spacemacs-theme molokai-theme color-theme color-theme-solarized terraform-mode json-mode helm-ag geben-helm-projectile helm-projectile projectile yaml-mode flycheck-yamllint magit groovy-mode jedi hippie-exp-ext auto-complete nyan-mode use-package)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
 
 (defun org-insert-source-block (name language switches header)
@@ -127,11 +115,25 @@ sheader? ")
       (forward-line -1)
       (goto-char (line-end-position))
         )
+(defun scratch ()
+  "create a new scratch buffer to work in. (could be *scratch* - *scratchX*)"
+  (interactive)
+  (let ((n 0)
+        bufname)
+    (while (progn
+             (setq bufname (concat "*scratch"
+                                   (if (= n 0) "" (int-to-string n))
+                                   "*"))
+             (setq n (1+ n))
+             (get-buffer bufname)))
+  (switch-to-buffer (get-buffer-create bufname))
+  (if (= n 1) initial-major-mode))) ; 1, because n was incremented
+
 
 (defun my/org-it ()
   "Create ORG file with date and time"
   (interactive)
-  (write-file (format-time-string "~/%Y-%m-%d--%H-%M-%S.org"))
+  (write-file (format-time-string "~/notes/%Y-%m-%d--%H-%M-%S.org"))
   )
 (defun my/org-codeblock ()
   "Insert <codeblock> at cursor point."
@@ -207,3 +209,17 @@ do stuff
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(ivy-rich counsel spacemacs-theme molokai-theme color-theme color-theme-solarized terraform-mode json-mode helm-ag geben-helm-projectile helm-projectile projectile yaml-mode flycheck-yamllint magit groovy-mode jedi hippie-exp-ext auto-complete nyan-mode use-package)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
