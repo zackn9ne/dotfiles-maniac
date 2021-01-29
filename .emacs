@@ -15,7 +15,7 @@
 (global-set-key (kbd "C-w") 'kill-ring-save)
 (global-set-key (kbd "M-w") 'kill-region)
 (global-set-key (kbd "C-c k") 'kill-buffer)
-
+(global-set-key (kbd "C-C *") 'isearch-forward-symbol-at-point)
 
 (require 'package)
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
@@ -48,9 +48,6 @@
   :mode (("\\.groovy$" . groovy-mode)
          ("\\.gradle$" . groovy-mode)))
 
-(use-package smex
-  :ensure t
-)
 
 ;;nyan mode
  (use-package nyan-mode
@@ -164,7 +161,26 @@
 
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)                 ; optional
-(global-set-key (kbd "C-S-s") 'isearch-forward-symbol-at-point)
+
+
+(require 'org-crypt)
+(org-crypt-use-before-save-magic)
+(setq org-tags-exclude-from-inheritance '("crypt"))
+
+(setq org-crypt-key "1519EECB")
+;; GPG key to use for encryption
+;; Either the Key ID or set to nil to use symmetric encryption.
+
+
+;; Auto-saving does not cooperate with org-crypt.el: so you need to
+;; turn it off if you plan to use org-crypt.el quite often.  Otherwise,
+;; you'll get an (annoying) message each time you start Org.
+
+;; To turn it off only locally, you can insert this:
+;;
+;; # -*- buffer-auto-save-file-name: nil; -*-
+
+
 
 (defun scratch ()
   "create a new scratch buffer to work in. (could be *scratch* - *scratchX*)"
@@ -192,7 +208,7 @@
   (insert "#+BEGIN_SRC json
 do stuff
 #+END_SRC")
-  (backward-char 19))
+  (backward-char 24))
 
 (setq find-file-visit-truename t)
 
@@ -204,22 +220,6 @@ do stuff
   (kill-new (file-truename buffer-file-name))
 )
 
-(require 'org-crypt)
-(org-crypt-use-before-save-magic)
-(setq org-tags-exclude-from-inheritance '("crypt"))
-
-(setq org-crypt-key "1519EECB")
-;; GPG key to use for encryption
-;; Either the Key ID or set to nil to use symmetric encryption.
-
-
-;; Auto-saving does not cooperate with org-crypt.el: so you need to
-;; turn it off if you plan to use org-crypt.el quite often.  Otherwise,
-;; you'll get an (annoying) message each time you start Org.
-
-;; To turn it off only locally, you can insert this:
-;;
-;; # -*- buffer-auto-save-file-name: nil; -*-
 
 
 
