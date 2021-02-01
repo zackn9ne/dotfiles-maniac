@@ -1,7 +1,7 @@
 #!/bin/sh
 
  
-read -r -p "Wanna setup a gpg key? [Y/n] " input
+read -r -p "Wanna import a gpg key? [Y/n] " input
  
 case $input in
     [yY][eE][sS]|[yY])
