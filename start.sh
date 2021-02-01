@@ -1,7 +1,7 @@
 #!/bin/sh
 
  
-read -r -p "Wanna import a gpg key? [Y/n] " input
+read -r -p "Wanna import a gpg key? [Y/n] \n be sure to run gpg-backup if you don't have an .asc file somewhere safe" input
  
 case $input in
     [yY][eE][sS]|[yY])
