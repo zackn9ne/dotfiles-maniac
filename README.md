@@ -1,4 +1,10 @@
 dotfiles-maniac zackn9ne's dotfiles
+
+# notable tmux bindings
+```
+prefix - | and - for splits
+```
+
 # how this works
 
 ```
