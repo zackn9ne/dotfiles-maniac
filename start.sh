@@ -54,6 +54,4 @@ esac
 
 
 read -n 1 -s -r -p "press any key to link tmux and emacs dotfiles"
-ln -sv ~/dotfiles-maniac/.emacs ~/
-ln -sv ~/dotfiles-maniac/.tmux.conf ~/
-
+cd ~/dotfiles-maniac/ && stow tmux emacs
