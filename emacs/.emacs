@@ -1,3 +1,8 @@
+(setq
+  initial-major-mode 'org-mode
+  initial-scratch-message
+  "// This buffer is for org notes to save.\n\n")
+
 (show-paren-mode 1)
 (global-visual-line-mode t)
 (global-display-line-numbers-mode 1)
@@ -20,7 +25,6 @@
 (require 'package)
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
              ("melpa" . "http://melpa.org/packages/")
-             ("marmalade" . "https://marmalade-repo.org/packages/")
              ("melpa-stable" . "https://stable.melpa.org/packages/")
              ("elpy" . "https://jorgenschaefer.github.io/packages/")))
 
@@ -36,9 +40,23 @@
 ;; tell use-package to install a package if it's not already installed
 (setq use-package-always-ensure t)
 
+;; ivy
 (use-package ivy
   :ensure)
 
+;; smex
+(use-package smex
+  :ensure)
+
+;; persistent-scratch
+(use-package persistent-scratch
+  :ensure
+  :config
+  (persistent-scratch-setup-default)
+  (persistent-scratch-autosave-mode t)
+  )
+
+;; magit
 (use-package magit
  :bind (("C-c g" . magit)))
 
@@ -48,6 +66,28 @@
   :mode (("\\.groovy$" . groovy-mode)
          ("\\.gradle$" . groovy-mode)))
 
+;;god mode
+ (use-package god-mode
+  :ensure t)
+(global-set-key (kbd "<escape>") #'god-mode-all)
+(defun my-god-mode-update-mode-line ()
+  (cond
+   (god-local-mode
+    (set-face-attribute 'mode-line nil
+                        :foreground "#604000"
+                        :background "#fff29a")
+    (set-face-attribute 'mode-line-inactive nil
+                        :foreground "#3f3000"
+                        :background "#fff3da"))
+   (t
+    (set-face-attribute 'mode-line nil
+			:foreground "#0a0a0a"
+			:background "#41FF00")
+    (set-face-attribute 'mode-line-inactive nil
+			:foreground "#404148"
+			:background "#41FF00"))))
+
+(add-hook 'post-command-hook 'my-god-mode-update-mode-line)
 
 ;;nyan mode
  (use-package nyan-mode
@@ -72,16 +112,6 @@
 (use-package json-mode
   :ensure t
   )
-
-(use-package terraform-mode
-  :hook
-  (terraform-mode . company-mode)
-  (terraform-mode . (lambda ()
-                      (when (and (stringp buffer-file-name)
-                        (string-match "\\.tf\\(vars\\)?\\'" buffer-file-name))
-                          (aggressive-indent-mode 0))))
-
-  (before-save . terraform-format-buffer))
 
 (use-package counsel
   :after ivy
@@ -146,8 +176,6 @@
           (t               . ivy-posframe-display-at-frame-center)))
   (ivy-posframe-mode 1)
 )
-  
-
 
 (setq org-todo-keywords
       '((sequence "TODO(t)" "WAIT(w@/!)" "InProg(i)" "|" "DONE(d!)" "CANCELED(c@)")))
@@ -158,10 +186,8 @@
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
-
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)                 ; optional
-
 
 (require 'org-crypt)
 (org-crypt-use-before-save-magic)
@@ -180,22 +206,6 @@
 ;;
 ;; # -*- buffer-auto-save-file-name: nil; -*-
 
-
-
-(defun scratch ()
-  "create a new scratch buffer to work in. (could be *scratch* - *scratchX*)"
-  (interactive)
-  (let ((n 0)
-        bufname)
-    (while (progn
-             (setq bufname (concat "*scratch"
-                                   (if (= n 0) "" (int-to-string n))
-                                   "*"))
-             (setq n (1+ n))
-             (get-buffer bufname)))
-  (switch-to-buffer (get-buffer-create bufname))
-  (if (= n 1) initial-major-mode))) ; 1, because n was incremented
-
 (defun my/org-it ()
   "Create ORG file with date and time"
   (interactive)
@@ -212,7 +222,6 @@ do stuff
 
 (setq find-file-visit-truename t)
 
-
 (defun my/current-file-is ()
   "Show the full path file name in the minibuffer."
   (interactive)
@@ -220,18 +229,13 @@ do stuff
   (kill-new (file-truename buffer-file-name))
 )
 
-
-
-
-
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(font-lock+ quelpa-use-package quelpa ivy-posframe smex all-the-icons-ivy ivy-rich counsel spacemacs-theme molokai-theme color-theme color-theme-solarized terraform-mode json-mode helm-ag geben-helm-projectile helm-projectile projectile yaml-mode flycheck-yamllint magit groovy-mode jedi hippie-exp-ext auto-complete nyan-mode use-package)))
+   '(god-mode persistent-scratch persistant-scratch font-lock+ quelpa-use-package quelpa ivy-posframe smex all-the-icons-ivy ivy-rich counsel spacemacs-theme molokai-theme color-theme color-theme-solarized terraform-mode json-mode helm-ag geben-helm-projectile helm-projectile projectile yaml-mode flycheck-yamllint magit groovy-mode jedi hippie-exp-ext auto-complete nyan-mode use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
