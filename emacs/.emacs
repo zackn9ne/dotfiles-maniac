@@ -1,3 +1,5 @@
+
+
 (setq
   initial-major-mode 'org-mode
   initial-scratch-message
@@ -115,14 +117,16 @@
 
 (use-package counsel
   :after ivy
-  :bind ("C-c a" . counsel-ag)
+  :bind (("C-c a" . counsel-ag)
+	 ("M-x" . counsel-M-x))
   :config (counsel-mode))
 
 (use-package ivy
   :defer 0.1
   :diminish
   :bind (("C-c C-r" . ivy-resume)
-         ("C-x B" . ivy-switch-buffer-other-window))
+         ("C-x B" . ivy-switch-buffer-other-window)
+	 )
   :custom
   (ivy-count-format "(%d/%d) ")
   (ivy-use-virtual-buffers t)
