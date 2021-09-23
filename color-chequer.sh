@@ -1,1 +1,0 @@
-dotfiles-maniac/tmux/color-chequer.sh
