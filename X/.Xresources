@@ -6,7 +6,7 @@ URxvt*boldFont:xft:Terminess Powerline:pixelsize=20
 ! *.font:	Inconsolata:pixelsize=24:antialias=true:autohint=true;
 
 !Liberation Mono
-Xft.dpi: 72
+Xft.dpi: 130
 
 ! These might also be useful depending on your monitor and personal preference:
 Xft.autohint: 0
@@ -15,4 +15,26 @@ Xft.hintstyle:  hintfull
 Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
-! xterm*font:     *-fixed-*-*-*-18-*
+xterm*font:     *-fixed-*-*-*-18-*
+
+! st.font:			-*-hack-*-*-*-*-18-*-*-*-*-*-*-1
+
+! Dracula Xresources palette
+*.foreground: #F8F8F2
+*.background: #282A36
+*.color0:     #000000
+*.color8:     #4D4D4D
+*.color1:     #FF5555
+*.color9:     #FF6E67
+*.color2:     #50FA7B
+*.color10:    #5AF78E
+*.color3:     #F1FA8C
+*.color11:    #F4F99D
+*.color4:     #CAA9FA
+*.color12:    #CAA9FA
+*.color5:     #FF79C6
+*.color13:    #FF92D0
+*.color6:     #8BE9FD
+*.color14:    #9AEDFE
+*.color7:     #BFBFBF
+*.color15:    #E6E6E6

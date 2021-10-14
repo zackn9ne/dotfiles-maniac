@@ -1,14 +1,8 @@
-! Make space crlololo
-!keycode 65 = Hyper_L
-!remove mod4 = Hyper_L
-!add Control = Hyper_L
-
-!keycode 51 = space
-
-
-!
-! Swap Caps_Lock and Escape
-!
 remove Lock = Caps_Lock
-
-keysym Caps_Lock = Escape
+remove Control = Control_L
+remove Lock = Control_L
+remove Control = Caps_Lock
+keysym Control_L = Control_L
+keysym Caps_Lock = Control_L
+add Lock = Caps_Lock
+add Control = Control_L

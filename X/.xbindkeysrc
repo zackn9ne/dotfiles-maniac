@@ -1,6 +1,0 @@
-# use this with sticky keys it sets the middle mouse button to CTRLOLOLOLO
-# killall xbindkeys
-# xbindkeys
-
-"xdotool key 'Control_L'"
-b:2
