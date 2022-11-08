@@ -120,3 +120,6 @@ parent frame."
 (menu-bar-mode -1) (when (fboundp 'tool-bar-mode) (tool-bar-mode -1)) (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 (straight-use-package 'nyan-mode) (nyan-mode 1)
+;; the default font size was 14
+(set-frame-font "15")
+(straight-use-package 'yaml-mode)
