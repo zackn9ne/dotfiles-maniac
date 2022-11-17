@@ -123,3 +123,10 @@ parent frame."
 ;; the default font size was 14
 (set-frame-font "15")
 (straight-use-package 'yaml-mode)
+(straight-use-package 'json-mode)
+(defun beautify-json ()
+  (interactive)
+  (let ((b (if mark-active (min (point) (mark)) (point-min)))
+	(e (if mark-active (max (point) (mark)) (point-max))))
+    (shell-command-on-region b e
+			          "python -m json.tool" (current-buffer) t)))
