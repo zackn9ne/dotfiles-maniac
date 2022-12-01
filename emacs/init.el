@@ -14,9 +14,6 @@
  '(elpy-rpc-timeout 10)
  '(package-selected-packages '(yaml-mode yaml magit molokai-theme)))
 
-
-
-
 ;; Install straight.el
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -121,5 +118,5 @@ parent frame."
 
 (straight-use-package 'nyan-mode) (nyan-mode 1)
 ;; the default font size was 14
-(set-frame-font "15")
+(set-frame-font "13")
 (straight-use-package 'yaml-mode)
