@@ -14,6 +14,7 @@
  '(elpy-rpc-timeout 10)
  '(package-selected-packages '(yaml-mode yaml magit molokai-theme)))
 
+
 ;; Install straight.el
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -29,8 +30,14 @@
   (load bootstrap-file nil 'nomessage))
 ;; end straight
 
+
+
+
+(straight-use-package 'flycheck)
 (straight-use-package 'elpy)
-(elpy-enable)
+;(elpy-enable)
+(elpy-disable)
+>>>>>>> 7a82fca50267b712534f699af813d83d33d3af0b
 (straight-use-package 'monokai-pro-theme)
 (load-theme 'monokai-pro t)
 
@@ -118,5 +125,39 @@ parent frame."
 
 (straight-use-package 'nyan-mode) (nyan-mode 1)
 ;; the default font size was 14
+
 (set-frame-font "13")
 (straight-use-package 'yaml-mode)
+
+(set-frame-font "15")
+(global-auto-revert-mode 1)
+(straight-use-package 'magit)
+(straight-use-package 'yaml-mode)
+(straight-use-package 'json-mode)
+(defun format-beautify-json ()
+  (interactive)
+  (let ((b (if mark-active (min (point) (mark)) (point-min)))
+	(e (if mark-active (max (point) (mark)) (point-max))))
+    (shell-command-on-region b e
+			     "python -m json.tool" (current-buffer) t)))
+(defun wsl-path-go ()
+  (interactive)
+  (find-file
+   "/mnt/c/Users/zlevine/Documents/GitHub/devops-episerver-jira-automation/"))
+
+(defun create-scratch-buffer (&optional nomode)
+    "Create a new scratch buffer and switch to it. If the region is active, then
+ paste the contents of the region in the new buffer. The new buffer inherits
+ the mode of the original buffer unless nomode is set.
+ Return the buffer."
+    (interactive "P")
+    (let (bufname (mjmode  major-mode) (paste (and (region-active-p) (prog1 (buffer-substring (mark t) (point)) (deactivate-mark)))))
+      (if (and (not nomode) (boundp 'ess-dialect) ess-dialect)
+	  (setq mjmode (intern-soft (concat ess-dialect "-mode"))))
+      (setq bufname (generate-new-buffer-name "*scratch*"))
+      (switch-to-buffer (get-buffer-create bufname))
+      (if paste (insert paste))
+      (if (and (not nomode) mjmode) (ignore-errors (funcall mjmode)))
+      (get-buffer bufname)
+          ))
+
