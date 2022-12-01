@@ -36,8 +36,8 @@
 (straight-use-package 'flycheck)
 (straight-use-package 'elpy)
 ;(elpy-enable)
-(elpy-disable)
->>>>>>> 7a82fca50267b712534f699af813d83d33d3af0b
+;(elpy-disable)
+
 (straight-use-package 'monokai-pro-theme)
 (load-theme 'monokai-pro t)
 
@@ -126,7 +126,7 @@ parent frame."
 (straight-use-package 'nyan-mode) (nyan-mode 1)
 ;; the default font size was 14
 
-(set-frame-font "13")
+(set-frame-font "11")
 (straight-use-package 'yaml-mode)
 
 (set-frame-font "15")
