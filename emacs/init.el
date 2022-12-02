@@ -1,139 +1,90 @@
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
-;; and `package-pinned-packages`. Most users will not need or want to do this.
-;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(package-initialize)
-;; disable because of elpa bug in emacs 27.1
-(setq package-check-signature nil)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(elpy-rpc-timeout 10)
- '(package-selected-packages '(yaml-mode yaml magit molokai-theme)))
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+  (add-to-list 'package-archives '("elpa" . "https://elpa.gnu.org/packages/") t)
+  (add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
+  (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+  (setq gnutls-algorithm-priority  "NORMAL:-VERS-TLS1.3" ;; bug fix for gnu
+        package-enable-at-startup nil
+        package-archive-priorities '(("melpa"        . 200)
+                                     ("elpa"         . 100)
+                                     ("org"          . 75)
+                                     ("nongnu"       . 65)
+                                     ("gnu"          . 50)))  ;; Higher values are searched first.
 
 
-;; Install straight.el
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-;; end straight
+;; This is only needed once, near the top of the file
+(eval-when-compile
+  ;; Following line is not needed if use-package.el is in ~/.emacs.d
+  (add-to-list 'load-path "<path where use-package is installed>")
+  (require 'use-package))
 
+(setq package-enable-at-startup nil)
 
-
-
-(straight-use-package 'flycheck)
-(straight-use-package 'elpy)
+(use-package nyan-mode
+  :ensure t
+  :config
+   (nyan-mode 1))
+(use-package yaml-mode
+  :ensure t)
+(use-package flycheck
+  :ensure t)
+(use-package elpy
+  :ensure t)
 ;(elpy-enable)
 ;(elpy-disable)
 
-(straight-use-package 'monokai-pro-theme)
-(load-theme 'monokai-pro t)
+(use-package monokai-pro-theme
+:ensure t
+:config
+(load-theme 'monokai-pro t))
 
-(straight-use-package 'helm-ag)
-(global-set-key (kbd "C-c a") 'helm-ag)
+(use-package helm-ag
+:ensure t
+:config
+(global-set-key (kbd "C-c a") 'helm-ag))
 
-(straight-use-package 'helm-rg)
-(setq helm-rg-default-directory 'git-root)
-
-(straight-use-package 'helm-projectile)
-;; (setq helm-projectile-fuzzy-match nil)
-(require 'helm-projectile)
+(use-package helm-projectile
+:ensure t
+:config
 (helm-projectile-on)
 (setq projectile-indexing-method 'alien) ; for win
 (setq visible-bell t) 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
-;; make helm decorated
-(defun my-helm-display-frame-center (buffer &optional resume)
-  "Display `helm-buffer' in a separate frame which centered in
-parent frame."
-  (if (not (display-graphic-p))
-      ;; Fallback to default when frames are not usable.
-      (helm-default-display-buffer buffer)
-    (setq helm--buffer-in-new-frame-p t)
-    (let* ((parent (selected-frame))
-           (frame-pos (frame-position parent))
-           (parent-left (car frame-pos))
-           (parent-top (cdr frame-pos))
-           (width (/ (frame-width parent) 2))
-           (height (/ (frame-height parent) 3))
-           tab-bar-mode
-           (default-frame-alist
-             (if resume
-                 (buffer-local-value 'helm--last-frame-parameters
-                                     (get-buffer buffer))
-               `((parent . ,parent)
-                 (width . ,width)
-                 (height . ,height)
-                 (undecorated . ,helm-use-undecorated-frame-option)
-                 (left-fringe . 0)
-                 (right-fringe . 0)
-                 (tool-bar-lines . 0)
-                 (line-spacing . 0)
-                 (desktop-dont-save . t)
-                 (no-special-glyphs . t)
-                 (inhibit-double-buffering . t)
-                 (tool-bar-lines . 0)
-                 (left . ,(+ parent-left (/ (* (frame-char-width parent) (frame-width parent)) 4)))
-                 (top . ,(+ parent-top (/ (* (frame-char-width parent) (frame-height parent)) 6)))
-                 (title . "Helm")
-                 (vertical-scroll-bars . nil)
-                 (menu-bar-lines . 0)
-                 (fullscreen . nil)
-                 (visible . ,(null helm-display-buffer-reuse-frame))
-                 ;; (internal-border-width . ,(if IS-MAC 1 0))
-                )))
-           display-buffer-alist)
-      (set-face-background 'internal-border (face-foreground 'default))
-      (helm-display-buffer-popup-frame buffer default-frame-alist))
-    (helm-log-run-hook 'helm-window-configuration-hook)))
-
-(setq helm-display-function 'my-helm-display-frame-center)
-
-
-(global-set-key (kbd "<f7>") 'helm-all-mark-rings)
+)
 
 ;; eshell
-(straight-use-package 'eshell-syntax-highlighting)
-(eshell-syntax-highlighting-global-mode +1)
+(use-package eshell-syntax-highlighting
+  :ensure t
+  :config
+(eshell-syntax-highlighting-global-mode +1))
 
-(straight-use-package 'exec-path-from-shell)
+(use-package exec-path-from-shell
+:ensure t
+:config
 (when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
+  (exec-path-from-shell-initialize)))
+
+(use-package magit
+  :ensure t)
+(use-package yaml-mode
+  :ensure t)
+(use-package json-mode
+  :ensure t)
+(use-package ace-window
+:ensure t
+:config
+(global-set-key (kbd "M-o") 'ace-window))
+
 
 (global-set-key (kbd "<f8>") 'elpy-goto-definition)
 
-
 (menu-bar-mode -1) (when (fboundp 'tool-bar-mode) (tool-bar-mode -1)) (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
-(straight-use-package 'nyan-mode) (nyan-mode 1)
 ;; the default font size was 14
-
-(set-frame-font "11")
-(straight-use-package 'yaml-mode)
-
 (set-frame-font "15")
+(set-frame-font "11")
 (global-auto-revert-mode 1)
-(straight-use-package 'magit)
-(straight-use-package 'yaml-mode)
-(straight-use-package 'json-mode)
+
 (defun format-beautify-json ()
   (interactive)
   (let ((b (if mark-active (min (point) (mark)) (point-min)))
@@ -161,3 +112,29 @@ parent frame."
       (get-buffer bufname)
           ))
 
+(defun win11-copy-selected-text (start end)
+  (interactive "r")
+    (if (use-region-p)
+        (let ((text (buffer-substring-no-properties start end)))
+            (shell-command (concat "echo '" text "' | clip.exe")))))
+
+(load-file "~/.emacs.d/control_lock.el")
+(provide 'control-lock)
+  ; Require the code
+;  (require 'control-lock)
+  ; Make C-z turn on control lock
+;  (control-lock-keys)
+(global-set-key (kbd "<f1>") 'control-lock-enable)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(exec-path-from-shell helm-projectile monokai-pro-theme flycheck ace-window json-mode magit elpy eshell-syntax-highlighting helm-ag use-package yaml-mode nyan-mode)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
