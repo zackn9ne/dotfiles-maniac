@@ -74,6 +74,9 @@
 :ensure t
 :config
 (global-set-key (kbd "M-o") 'ace-window))
+(use-package restclient
+:ensure t
+)
 
 
 (global-set-key (kbd "<f8>") 'elpy-goto-definition)
@@ -82,8 +85,9 @@
 
 ;; the default font size was 14
 (set-frame-font "15")
-(set-frame-font "11")
+(set-frame-font "10")
 (global-auto-revert-mode 1)
+(server-start)
 
 (defun format-beautify-json ()
   (interactive)
@@ -91,10 +95,10 @@
 	(e (if mark-active (max (point) (mark)) (point-max))))
     (shell-command-on-region b e
 			     "python -m json.tool" (current-buffer) t)))
-(defun wsl-path-go ()
-  (interactive)
+(defun wsl-path-go (user)
+  (interactive "sEnter username: ")
   (find-file
-   "/mnt/c/Users/zlevine/Documents/GitHub/devops-episerver-jira-automation/"))
+   (format "/mnt/c/Users/%s/Documents/GitHub/devops-episerver-jira-automation/" user)))
 
 (defun create-scratch-buffer (&optional nomode)
     "Create a new scratch buffer and switch to it. If the region is active, then
@@ -131,7 +135,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(exec-path-from-shell helm-projectile monokai-pro-theme flycheck ace-window json-mode magit elpy eshell-syntax-highlighting helm-ag use-package yaml-mode nyan-mode)))
+   '(restclient exec-path-from-shell helm-projectile monokai-pro-theme flycheck ace-window json-mode magit elpy eshell-syntax-highlighting helm-ag use-package yaml-mode nyan-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
