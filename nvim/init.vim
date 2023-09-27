@@ -1,1 +1,0 @@
-/home/netkam/.config/nvim/init.vim
